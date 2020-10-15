@@ -38,6 +38,7 @@ public class Lectortxt {
 		
 		if(linea.contains("Titulo:")) {
 			
+			
 		}
 			
 		

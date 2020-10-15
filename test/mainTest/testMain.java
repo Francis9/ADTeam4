@@ -32,26 +32,17 @@ class testMain {
 	@Test
 	void testCsv() {
 		Lectorcsv Lc = new Lectorcsv();
-			try {
-				assertEquals(true, Lc.lectorcsv("listalibros.csv"));
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				
-			}
+		assertEquals(true, Lc.lectorcsv("listalibros.csv"));
+		
 		
 	}
 	
 	@Test
 	void testLectorCsvFallo() {
 		
-			try {
-				Lectorcsv Lc = new Lectorcsv();
-				assertEquals(false, Lc.lectorcsv(null));
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				
-			}
-		
+		Lectorcsv Lc = new Lectorcsv();
+		assertEquals(false, Lc.lectorcsv(null));
+	
 	}
 	
 	/*

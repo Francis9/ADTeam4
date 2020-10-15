@@ -5,6 +5,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+
+import modelo.Libro;
 
 public class Lectortxt {
 
@@ -28,5 +31,16 @@ public class Lectortxt {
 		}
 		
 		return boo;
+	}
+	
+	public ArrayList<Libro> rellenarArray(String linea) {
+		ArrayList<Libro> l1 = new ArrayList<Libro>();
+		
+		if(linea.contains("Titulo:")) {
+			
+		}
+			
+		
+		return l1;
 	}
 }

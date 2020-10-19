@@ -1,7 +1,10 @@
 package comunes;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -12,7 +15,7 @@ public class Lectorcsv {
 	public static final String SEPARATOR = ";";
 	public static final String QUOTE = "\"";
 
-	public static boolean lectorcsv(String archivo) {
+	public static ArrayList <Libro> obtenerLibrosCsv(String archivo) {
 
 		BufferedReader br = null;
 		ArrayList<Libro> listaLibros = new ArrayList<Libro>();
@@ -58,12 +61,11 @@ public class Lectorcsv {
 		if (listaLibros.size() == 0) {
 			
 			System.out.println("El archivo no contiene ningún libro");
-			return false;
+			return listaLibros;
 			
 		} else {
 			
-			MostrarDatos.mostrarLibros(listaLibros);
-			return true;
+			return listaLibros;
 		}
 
 	}
@@ -76,6 +78,34 @@ public class Lectorcsv {
 			result[i] = fields[i].replaceAll(QUOTE, "");
 		}
 		return result;
+	}
+	
+	public static boolean escribirCsv(String url, ArrayList<Libro> listaLibros) {
+		
+		boolean boo = false;
+		File csv = new File(url);
+		
+		try {
+			FileWriter fw = new FileWriter(csv);
+			BufferedWriter bfwriter = new BufferedWriter(fw);
+			bfwriter.write("Título" + SEPARATOR + "Editorial" + SEPARATOR + "Páginas"
+			+ SEPARATOR + "Altura" + SEPARATOR + "Notas" + SEPARATOR + "ISBN" + SEPARATOR + "Materias" + "\n");
+			
+			for (Libro libro : listaLibros) {
+				bfwriter.write(libro.getTitulo() + SEPARATOR + libro.getEditorial() + SEPARATOR + libro.getPaginas()
+						+ SEPARATOR + libro.getAltura() + SEPARATOR + libro.getNotas() + SEPARATOR+ libro.getIsbn() + SEPARATOR + libro.getMaterias() + "\n");
+			}
+			
+			boo=true;
+			bfwriter.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("Archivo no encontrado");
+			boo= false;
+		}
+		
+		return boo;
 	}
 
 }

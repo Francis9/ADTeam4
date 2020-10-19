@@ -6,6 +6,7 @@ import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import org.junit.jupiter.api.Test;
@@ -32,7 +33,8 @@ class testMain {
 	@Test
 	void testCsv() {
 		Lectorcsv Lc = new Lectorcsv();
-		assertEquals(true, Lc.lectorcsv("listalibros.csv"));
+		ArrayList <Libro> listaLibros = new ArrayList <Libro>();
+		assertEquals(true, (listaLibros = (Lc.obtenerLibrosCsv("listalibros.csv"))) != null);
 		
 		
 	}
@@ -41,7 +43,8 @@ class testMain {
 	void testLectorCsvFallo() {
 		
 		Lectorcsv Lc = new Lectorcsv();
-		assertEquals(false, Lc.lectorcsv(null));
+		ArrayList <Libro> listaLibros = new ArrayList <Libro>();
+		assertEquals(true, (listaLibros = (Lc.obtenerLibrosCsv(null))).size() == 0);
 	
 	}
 	
@@ -113,9 +116,9 @@ class testMain {
 	
 	
 	@Test
-	void testmain1() throws IOException {
+	void testmain1() {
 		Programa main = new Programa();
-		String input = "1 \n";
+		String input = "1 \n 1 \n 0";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 	    Scanner teclado = new Scanner(System.in); 
@@ -124,9 +127,9 @@ class testMain {
 		
 		
 	@Test
-	void testmain2() throws IOException {
+	void testmain2() {
 		
-		String input = "2 \n";
+		String input = "2 \n 1 \n 0";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 	    Scanner teclado = new Scanner(System.in); 
@@ -135,9 +138,9 @@ class testMain {
 	}
 	
 	@Test
-	void testmain3() throws IOException {
+	void testmain3() {
 		
-		String input = "3 \n";
+		String input = "3 \n 1 \n 0";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 	    Scanner teclado = new Scanner(System.in); 
@@ -146,9 +149,9 @@ class testMain {
 	}
 	
 	@Test
-	void testmain4() throws IOException {
+	void testmain4() {
 		
-		String input = "a \n 1 \n";
+		String input = "a \n 0 \n";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 	    Scanner teclado = new Scanner(System.in); 
@@ -171,12 +174,6 @@ class testMain {
 		assertEquals("ah", libro.getEditorial()); 
 
 	}
-	
-	
-	
-
-	
-	
 	
 	
 }
